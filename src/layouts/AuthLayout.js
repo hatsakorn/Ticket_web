@@ -4,7 +4,7 @@ import NavSideBar from "./NavSideBar";
 
 function AuthLayout() {
   return (
-    <div>
+    <div className="flex">
       <NavSideBar />
       <Outlet />
     </div>
