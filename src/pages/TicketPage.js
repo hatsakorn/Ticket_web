@@ -1,18 +1,39 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import AddTicket from "../features/ticket/AddTicket";
 import PaginationTicket from "../features/ticket/PaginationTicket";
 import SearchTicket from "../features/ticket/SearchTicket";
 import ShowTicketStatus from "../features/ticket/ShowTicketStatus";
 import TicketDetail from "../features/ticket/TicketDetail";
+import * as TicketApi from "../apis/TicketApi";
 
 function TicketPage() {
+  const [ticketStatus, setTicketStatus] = useState([]);
+  const fetchTicketStatus = async () => {
+    const all = await TicketApi.countAllTicket();
+    const pending = await TicketApi.countPending();
+    const accepted = await TicketApi.countAccepted();
+    const resolved = await TicketApi.countResolved();
+    const rejected = await TicketApi.countRejected();
+    setTicketStatus([
+      {
+        open: all.data,
+        pending: pending.data,
+        accepted: accepted.data,
+        resolved: resolved.data,
+        rejected: rejected.data,
+      },
+    ]);
+  };
+  useEffect(() => {
+    fetchTicketStatus();
+  }, []);
   return (
     <>
       <div className="w-[15%] bg-gray-200">
         <div className="mx-2">
           <AddTicket />
           <SearchTicket />
-          <ShowTicketStatus />
+          <ShowTicketStatus ticketStatus={ticketStatus} />
         </div>
       </div>
       <div className="w-screen">
