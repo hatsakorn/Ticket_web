@@ -1,11 +1,13 @@
 import React from "react";
-import ProfileImg from "../assets/profile_picture.jpg";
+import useTicket from "../hooks/useTicket";
 
-function PictureProfile() {
+function PictureProfile({ twoLetter }) {
   return (
     <div>
       <div className="flex">
-        <img className="rounded-full w-[50px] h-[50px]" src={ProfileImg} />
+        <div className="rounded-full w-[50px] h-[50px] bg-gray-400">
+          <p className="flex justify-center mt-3">{twoLetter}</p>
+        </div>
       </div>
     </div>
   );

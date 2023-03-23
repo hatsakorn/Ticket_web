@@ -4,16 +4,16 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import AuthContextProvider from "./contexts/AuthContext";
-import TicketContextProvider from "./contexts/TicketContext";
+import TicketContextsProvider from "./contexts/TicketContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <AuthContextProvider>
-    <TicketContextProvider>
+    <TicketContextsProvider>
       <React.StrictMode>
         <App />
       </React.StrictMode>
-    </TicketContextProvider>
+    </TicketContextsProvider>
   </AuthContextProvider>
 );
 
