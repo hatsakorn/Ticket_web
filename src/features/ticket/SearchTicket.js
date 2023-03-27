@@ -1,13 +1,16 @@
-import React from "react";
-import { Search } from "../../assets/icons/Index";
+// import { Search } from "../../assets/icons/Index";
 
-function SearchTicket() {
-  return (
-    <div className="flex ">
-      <Search />
-      <input className="" placeholder="Search ticket" />
-    </div>
-  );
-}
+// function SearchTicket({ setSearchText, searchText }) {
+//   return (
+//     <div className="flex ">
+//       <Search />
+//       <input
+//         value={searchText}
+//         onChange={(e) => setSearchText(e.target.value.trim())}
+//         placeholder="Search ticket"
+//       />
+//     </div>
+//   );
+// }
 
-export default SearchTicket;
+// export default SearchTicket;

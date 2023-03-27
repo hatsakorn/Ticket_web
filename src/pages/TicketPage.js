@@ -4,46 +4,41 @@ import PaginationTicket from "../features/ticket/PaginationTicket";
 import SearchTicket from "../features/ticket/SearchTicket";
 import ShowTicketStatus from "../features/ticket/ShowTicketStatus";
 import TicketDetail from "../features/ticket/TicketDetail";
-import * as TicketApi from "../apis/TicketApi";
+import useTicket from "../hooks/useTicket";
 
 function TicketPage() {
-  const [ticketStatus, setTicketStatus] = useState([]);
-  const fetchTicketStatus = async () => {
-    const all = await TicketApi.countAllTicket();
-    const pending = await TicketApi.countPending();
-    const accepted = await TicketApi.countAccepted();
-    const resolved = await TicketApi.countResolved();
-    const rejected = await TicketApi.countRejected();
-    setTicketStatus([
-      {
-        open: all.data,
-        pending: pending.data,
-        accepted: accepted.data,
-        resolved: resolved.data,
-        rejected: rejected.data,
-      },
-    ]);
-  };
-  useEffect(() => {
-    fetchTicketStatus();
-  }, []);
+  // const [countAllTicket, setCountAllTicket] = useState(0);
+  // const [searchText, setSearchText] = useState("");
+
+  const { allTicket } = useTicket();
+
+  useEffect(() => {}, []);
+
+  // const searchTicket = allTicket.filter((el) =>
+  //   el.title.toLowerCase().includes(searchText.toLowerCase())
+  // );
+
+  // const getCountAllTicket = (count) => {
+  //   setCountAllTicket(count);
+  // };
+
   return (
     <>
-      <div className="w-[15%] bg-gray-200">
+      <div className="w-[15%] bg-gray-200 text-black">
         <div className="mx-2">
           <AddTicket />
-          <SearchTicket />
-          <ShowTicketStatus ticketStatus={ticketStatus} />
+          {/* <SearchTicket setSearchText={setSearchText} searchText={searchText} /> */}
+          <ShowTicketStatus />
         </div>
       </div>
-      <div className="w-screen">
+      <div className="w-screen bg-white text-black">
         <div className="mx-4">
           <div>All ticket</div>
           <button>Filter ticket</button>
         </div>
         <hr />
         <div className="flex justify-between mx-4">
-          <div>50 tickets</div>
+          <div> 555 tickets</div>
           <PaginationTicket />
         </div>
         <hr />

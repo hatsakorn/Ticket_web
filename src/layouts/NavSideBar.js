@@ -5,7 +5,7 @@ import ProfileName from "./ProfileName";
 
 function NavSideBar() {
   return (
-    <div className="sticky bg-pink-500 w-20 h-screen ">
+    <div className=" bg-pink-500 w-20 h-screen text-black">
       <div className="flex-col h-4/6">
         <div className="flex-col text-center py-4 ">
           <div className="bg-pink-600">
