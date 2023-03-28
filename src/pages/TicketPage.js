@@ -6,7 +6,7 @@ import TicketDetail from "../features/ticket/TicketDetail";
 import useTicket from "../hooks/useTicket";
 
 function TicketPage() {
-  const { allTicket, fetchTicket } = useTicket();
+  const { allTicket, fetchTicket, trigger, setTrigger } = useTicket();
 
   const [selectedStatus, setSelectedStatus] = useState("All");
   const [countStatus, setCountStatus] = useState(allTicket.length);
@@ -14,6 +14,10 @@ function TicketPage() {
   useEffect(() => {
     fetchTicket();
   }, [countStatus]);
+
+  const handleClickSorting = () => {
+    setTrigger(!trigger);
+  };
 
   return (
     <>
@@ -43,8 +47,10 @@ function TicketPage() {
             <div>Title</div>
             <div>Description</div>
             <div>Assignee</div>
-            <div>Status</div>
-            <div className="mr-4">Last updated</div>
+            <div className="hover:cursor-pointer" onClick={handleClickSorting}>
+              Status
+            </div>
+            <div className="hover:cursor-pointer mr-4">Last updated</div>
           </div>
           <hr />
         </div>

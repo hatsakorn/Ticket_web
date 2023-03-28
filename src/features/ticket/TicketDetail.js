@@ -3,7 +3,13 @@ import useTicket from "../../hooks/useTicket";
 import PictureProfile from "../../layouts/PictureProfile";
 
 function TicketDetail({ selectedStatus, setCountStatus }) {
-  const { allTicket, fetchTicket } = useTicket();
+  const {
+    allTicket,
+    fetchTicket,
+    trigger,
+    sortingStatusASC,
+    sortingStatusDESC,
+  } = useTicket();
 
   useEffect(() => {
     fetchTicket();
