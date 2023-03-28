@@ -2,16 +2,24 @@ import React, { useEffect, useState } from "react";
 import useTicket from "../../hooks/useTicket";
 import PictureProfile from "../../layouts/PictureProfile";
 
-function TicketDetail() {
+function TicketDetail({ selectedStatus, setCountStatus }) {
   const { allTicket, fetchTicket } = useTicket();
 
   useEffect(() => {
     fetchTicket();
   }, []);
 
+  let choosenStatus = allTicket.filter(
+    (ticket) => ticket.status === selectedStatus
+  );
+  if (selectedStatus === "All") {
+    choosenStatus = allTicket;
+  }
+  setCountStatus(choosenStatus.length);
+
   return (
     <>
-      {allTicket.map((el) => (
+      {choosenStatus.map((el) => (
         <div key={el.id}>
           <div className="flex my-5">
             <div className="flex w-[25%] flex-wrap">

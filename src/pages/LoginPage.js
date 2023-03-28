@@ -22,7 +22,7 @@ function LoginPage() {
 
   return (
     <div className="flex h-screen">
-      <div className="bg-pink-500 m-auto p-14">
+      <div className="bg-pink-500 m-auto p-14 text-black">
         <div className="flex justify-center text-xl my-2">
           <strong>Login</strong>
         </div>

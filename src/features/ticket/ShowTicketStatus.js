@@ -1,27 +1,16 @@
-import React, { useEffect, useState } from "react";
-import * as TicketApi from "../../apis/TicketApi";
+import React, { useEffect } from "react";
+import useTicket from "../../hooks/useTicket";
 
-function ShowTicketStatus() {
-  const [ticketStatus, setTicketStatus] = useState([]);
-  const fetchTicketStatus = async () => {
-    const all = await TicketApi.countAllTicket();
-    const pending = await TicketApi.countPending();
-    const accepted = await TicketApi.countAccepted();
-    const resolved = await TicketApi.countResolved();
-    const rejected = await TicketApi.countRejected();
-    setTicketStatus([
-      {
-        open: all.data,
-        pending: pending.data,
-        accepted: accepted.data,
-        resolved: resolved.data,
-        rejected: rejected.data,
-      },
-    ]);
-  };
-  useEffect(() => {
-    fetchTicketStatus();
-  }, []);
+function ShowTicketStatus({ setSelectedStatus }) {
+  const {
+    allTicket,
+    selectedPending,
+    selectedAccepted,
+    selectedResolved,
+    selectedRejected,
+  } = useTicket();
+
+  useEffect(() => {}, []);
   return (
     <div>
       <div>
@@ -30,25 +19,40 @@ function ShowTicketStatus() {
           <div>Assigned ticket</div>
         </div>
         <div>
-          <div className="flex justify-between hover:cursor-pointer my-2">
-            <div>Open</div>
-            <div>{ticketStatus[0]?.open}</div>
+          <div
+            className="flex justify-between hover:cursor-pointer my-2"
+            onClick={() => setSelectedStatus("All")}
+          >
+            <div>All</div>
+            <div>{allTicket.length}</div>
           </div>
-          <div className="flex justify-between hover:cursor-pointer my-2">
+          <div
+            className="flex justify-between hover:cursor-pointer my-2"
+            onClick={() => setSelectedStatus("Pending")}
+          >
             <div>Pending</div>
-            <div>{ticketStatus[0]?.pending}</div>
+            <div>{selectedPending.length}</div>
           </div>
-          <div className="flex justify-between hover:cursor-pointer my-2">
+          <div
+            className="flex justify-between hover:cursor-pointer my-2"
+            onClick={() => setSelectedStatus("Accepted")}
+          >
             <div>Accepted</div>
-            <div>{ticketStatus[0]?.accepted}</div>
+            <div>{selectedAccepted.length}</div>
           </div>
-          <div className="flex justify-between hover:cursor-pointer my-2">
+          <div
+            className="flex justify-between hover:cursor-pointer my-2"
+            onClick={() => setSelectedStatus("Resolved")}
+          >
             <div>Resolved</div>
-            <div>{ticketStatus[0]?.resolved}</div>
+            <div>{selectedResolved.length}</div>
           </div>
-          <div className="flex justify-between hover:cursor-pointer my-2">
+          <div
+            className="flex justify-between hover:cursor-pointer my-2"
+            onClick={() => setSelectedStatus("Rejected")}
+          >
             <div>Rejected</div>
-            <div>{ticketStatus[0]?.rejected}</div>
+            <div>{selectedRejected.length}</div>
           </div>
         </div>
       </div>
