@@ -10,7 +10,6 @@ export default function TicketContextProvider({ children }) {
   const [selectedAccepted, setSelectedAccepted] = useState([]);
   const [selectedResolved, setSelectedResolved] = useState([]);
   const [selectedRejected, setSelectedRejected] = useState([]);
-  const [trigger, setTrigger] = useState(false);
 
   const fetchTicket = async () => {
     const res = await TicketApi.getAllTicket();
@@ -43,8 +42,6 @@ export default function TicketContextProvider({ children }) {
         selectedAccepted,
         selectedResolved,
         selectedRejected,
-        trigger,
-        setTrigger,
       }}
     >
       {children}

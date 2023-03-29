@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import useTicket from "../../hooks/useTicket";
 import PictureProfile from "../../layouts/PictureProfile";
 
-function TicketDetail({ selectedStatus, setCountStatus }) {
-  const {
-    allTicket,
-    fetchTicket,
-    trigger,
-    sortingStatusASC,
-    sortingStatusDESC,
-  } = useTicket();
+function TicketDetail({
+  selectedStatus,
+  setCountStatus,
+  allChecked,
+  setChoosenTicketId,
+}) {
+  const { allTicket, fetchTicket } = useTicket();
 
   useEffect(() => {
     fetchTicket();
@@ -29,7 +28,15 @@ function TicketDetail({ selectedStatus, setCountStatus }) {
         <div key={el.id}>
           <div className="flex my-5">
             <div className="flex w-[25%] flex-wrap">
-              <input className="mt-4 ml-4 mr-2" type={"checkbox"} />
+              {allChecked ? (
+                <input className="mt-4 ml-4 mr-2 " type={"checkbox"} checked />
+              ) : (
+                <input
+                  className="mt-4 ml-4 mr-2"
+                  type={"checkbox"}
+                  onClick={() => setChoosenTicketId(el.id)}
+                />
+              )}
               <PictureProfile
                 twoLetter={el.User.email.toUpperCase().split("@", 1)}
               />
