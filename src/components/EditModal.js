@@ -18,7 +18,7 @@ export function EditModal({ choosenTicketId }) {
     title: ticketInfo[0]?.title,
     description: ticketInfo[0]?.description,
     contactInformation: ticketInfo[0]?.contactInformation,
-    status: ticketInfo[0]?.status,
+    status: ticketInfo[0]?.status
   };
   useEffect(() => {
     setInputText(initialInput);

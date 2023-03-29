@@ -6,7 +6,7 @@ function TicketDetail({
   selectedStatus,
   setCountStatus,
   allChecked,
-  setChoosenTicketId,
+  setChoosenTicketId
 }) {
   const { allTicket, fetchTicket } = useTicket();
 
